@@ -1,0 +1,23 @@
+Havenapp
+<script>
+    function eenfunctie(){
+        let input = document.getElementById("invoer").value;
+ //       alert(input);
+        fetch("http://127.0.0.1:5000/schip_aanmaken/"+ input +"/vlissingen")
+    }
+    function toon_alle_schepen(){
+        fetch("http://127.0.0.1:5000/toon_alle_schepen")
+        .then(r => r.json())
+        .then( d => verwerkfunctie(d))
+    }
+    function verwerkfunctie(alleschepen){
+        console.log(alleschepen)
+        for (let i=0; i < alleschepen.length; i++){
+            document.getElementById("uitkomst").innerHTML += alleschepen[i].naam+"<br>";
+        }
+    }
+</script>
+
+<input type="text" id="invoer" placeholder="bootnaam"><button onclick="eenfunctie()">klik hier</button>
+<button onclick="toon_alle_schepen()">alle schepen</button>
+<div id="uitkomst">lets go</div>
